@@ -43,4 +43,9 @@ public class EmployeeRepository implements IEmployeeRepository {
     public void deleteById(Integer id) {
         entityManager.remove(findById(id));
     }
+
+    @Override
+    public List<Employee> findByName(String name) {
+        return null;
+    }
 }

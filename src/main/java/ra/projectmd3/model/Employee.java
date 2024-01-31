@@ -1,21 +1,27 @@
 package ra.projectmd3.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String avatar;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "date")
+    private Date dob;
+    private String bio;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 }
